@@ -1,0 +1,864 @@
+/* Importation d'une police Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --couleur-primaire: #4a90e2; 
+    --couleur-secondaire: #50e3c2; 
+    --couleur-texte: #333;
+    --couleur-fond: #f4f7f9;
+}
+
+/* Styles Généraux */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    margin: 0;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- HEADER ET ANIMATION D'IMAGE --- */
+.hero-section {
+    position: relative; 
+    transition: background-image 1s ease-in-out, background-size 0.5s ease; 
+    background: linear-gradient(135deg, var(--couleur-primaire), var(--couleur-secondaire));
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-size: cover; 
+    background-position: center center; 
+    animation: backgroundPan 40s infinite alternate;
+}
+.hero-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); 
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+@keyframes backgroundPan {
+    0% { background-position: 0% 50%; background-size: 110%; } 
+    100% { background-position: 100% 50%; background-size: 100%; } 
+}
+@keyframes subtleZoom {
+    0% { background-size: 100%; } 
+    100% { background-size: 115%; } 
+}
+
+/* Classes d'images dynamiques (Assurez-vous du chemin : ./assets/) */
+.bg-primaire { background-image: url('./assets/bg-primaire.jpg'); animation-duration: 30s; }
+.bg-college { background-image: url('./assets/bg-college.jpg'); animation: subtleZoom 25s infinite alternate; }
+.bg-lycee { background-image: url('./assets/bg-lycee.jpg'); animation-duration: 40s; }
+
+/* --- MENU KEBAB ET OVERLAY --- */
+
+.menu-kebab-btn {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    z-index: 100; /* Plus haut que l'overlay d'image */
+    transition: background 0.3s, transform 0.3s;
+    backdrop-filter: blur(4px);
+}
+.menu-kebab-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+#menu-overlay {
+    height: 100%;
+    width:0; 
+    position: fixed;
+    z-index: 3000;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+.overlay-nav {
+    position: relative;
+    top: 15%;
+    width: 100%;
+    text-align: justify;
+    margin-top: 30px;
+}
+.overlay-nav a {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+}
+.overlay-nav a:hover {
+    color: var(--couleur-secondaire);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.close-menu-btn {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 40px;
+    color: #818181;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* --- BARRE DE RECHERCHE FANTASTIQUE --- */
+#search-bar-container {
+    position: relative;
+    width: 90%;
+    max-width: 700px; 
+    margin: 10px auto 0;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); 
+    border-radius: 40px; 
+    overflow: visible; 
+    display: flex;
+    z-index: 50;
+}
+#search-input {
+    flex-grow: 1;
+    padding: 8px 0px;
+    border: 2px solid var(--couleur-secondaire);
+    border-right: none;
+    border-radius: 40px 0 0 40px;
+    font-size: 1em;
+    outline: none;
+    transition: all 0.3s;
+}
+#search-input:focus {
+    border-color: var(--couleur-primaire);
+    box-shadow: 0 0 10px rgba(74, 244, 226, 0.5);
+}
+#search-button {
+    background-color: var(--couleur-secondaire);
+    border: none;
+    padding: 0 25px;
+    border-radius: 0 40px 40px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#search-button:hover { background-color: #38a892; }
+.search-icon { font-size: 1.1em; color: white; }
+#search-results {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    right: 0;
+    background-color: rgba(17,45,20,1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 4;
+    text-align: left;
+}
+#search-results li {
+    padding: 12px 25px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#search-results li:hover { background-color: var(--couleur-primaire); }
+/* --- Styles pour distinguer les tags dans la recherche globale --- */
+.tag-correction {
+    display: inline-block;
+    background-color: #ffc107; /* Jaune */
+    color: #333;
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.tag-ressource {
+    display: inline-block;
+    background-color: #28a745; /* Vert */
+    color: white;
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+/* --- STYLES CATALOGUE ET CARTES (CONSERVÉS) --- */
+
+.boutons-niveau {
+    display: flex;
+    /*justify-content: center;*/
+    gap: 20px;
+    margin-bottom: 40px;
+    overflow-x:auto;
+}
+.btn-niveau {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: var(--couleur-primaire);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-niveau:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.btn-niveau.actif {
+    background-color: var(--couleur-primaire);
+    color: white;
+    box-shadow: 0 4px 15px var(--couleur-primaire);
+}
+.grille-ressources {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding-top: 20px;
+}
+.ressource-card {
+    background-color: var(--couleur-primaire);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+.ressource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.ressource-card a {
+    display: inline-block;
+    background-color: var(--couleur-secondaire);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+/* --- STYLES MOBILE MONEY (CONSERVÉS) --- */
+
+.donation-btn {
+    position: fixed; /* Reste visible même en scrollant */
+    bottom: 30px;
+    right: 30px;
+    padding: 15px 25px;
+    background-color: #ff5722; /* Couleur chaude pour l'appel à l'action */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Assure qu'il est au-dessus du reste */
+    transition: background-color 0.3s, transform 0.3s;do
+}
+.donation-btn> a{text-decoration: none;}
+
+.donation-btn:hover {
+    background-color: #e64a19;
+    transform: scale(1.05); /* Effet d'animation */
+}
+
+/* --- STYLES HISTORIQUE DES DONS --- */
+
+.historique-section {
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.historique-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.historique-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95em;
+}
+
+.historique-item:last-child {
+    border-bottom: none; /* Pas de bordure sous le dernier élément */
+}
+
+.historique-details strong {
+    color: var(--couleur-primaire);
+    font-weight: 600;
+}
+
+.historique-date {
+    color: #888;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.historique-montant {
+    font-weight: 700;
+    color: #ff5722; /* Couleur orange/don */
+}
+/* --- RESPONSIVITÉ POUR L'ENSEMBLE DU SITE --- */
+
+/* Ajustements généraux pour les petits écrans */
+@media (max-width: 768px) {
+    
+    .container {
+        padding: 0 15px; /* Réduire le padding général du conteneur */
+    }
+    
+    /* En-tête */
+    .header-content h1 {
+        font-size: 2em; /* Rendre le titre principal plus petit */
+    }
+
+    /* Le statut de connexion de l'utilisateur (coin supérieur droit) */
+    .user-auth-status {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* --- I. Section Catalogue Correction (La grande carte) --- */
+
+    .correction-catalogue-section {
+        padding: 30px 10px;
+    }
+
+    .correction-card {
+        flex-direction: column; /* Empiler les éléments de la carte */
+        align-items: center;
+        text-align: center;
+    }
+
+    .card-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .card-info {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .card-arrow {
+        display: none; /* Simplifier en cachant la flèche */
+    }
+
+    /* --- II. Sélection des Niveaux (Primaire, Collège, Lycée) --- */
+
+    .niveaux-container {
+        flex-wrap: wrap; /* Permettre aux boutons de passer à la ligne */
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .btn-niveau {
+        /* Permettre à deux boutons de tenir sur une ligne */
+        flex: 1 1 45%; 
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    /* --- III. Grille de Ressources/Corrections --- */
+    
+    .ressources-grille {
+        /* Afficher une seule colonne pour les cartes */
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    /* S'assurer que les boutons prennent toute la largeur pour être faciles à cliquer */
+    .btn-whatsapp,
+    .btn-universite {
+        width: 100%;
+        box-sizing: border-box; 
+    }
+    
+    /* --- IV. Section Université --- */
+    
+    #universite-section {
+        padding: 40px 10px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .universite-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .stats-grid {
+        /* Empiler les statistiques si l'espace est vraiment très réduit */
+        grid-template-columns: 1fr; 
+        gap: 15px;
+    }
+    
+    .stat-item {
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+    }
+    
+    .stat-item h4 {
+        font-size: 1.8em;
+    }
+    
+    /* --- V. Historique des Dons --- */
+    
+    .historique-item {
+        flex-direction: column; /* Empiler les détails et le montant du don */
+        align-items: flex-start;
+        padding: 10px 0;
+    }
+
+    .historique-details {
+        margin-bottom: 5px;
+    }
+}
+
+/* --- OPTIMISATION pour les écrans très petits (inférieurs à 480px) --- */
+
+@media (max-width: 480px) {
+    
+    .btn-niveau {
+        /* Forcer les boutons de niveau à une colonne complète si l'espace est critique */
+        flex: 1 1 100%;
+    }
+}
+
+
+/* --- SECTION UNIVERSITÉ --- */
+
+.university{
+    display: flex;
+    overflow-x:auto;
+    margin-top:0px;
+} 
+
+#universite-section {
+    padding: 10px 10px;
+    background-color: #e6e9f0; /* Fond légèrement différent du corps */
+    text-align: center;
+}
+
+.universite-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Ombre flottante */
+    overflow: hidden;
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.universite-card:hover {
+    transform: translateY(-8px) scale(1.01); /* Effet dynamique au survol */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    background-color: black/*var(--couleur-primaire)*/; /* Bleu Éducatif (du thème) */
+    color: white;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.universite-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.chapeau-univesitaire{
+    background-color:#fff;
+    border-radius:50%;
+}
+
+.card-content {
+    padding: 30px;
+}
+
+.card-content h3 {
+    font-size: 1.8em;
+    margin-top: 0;
+}
+
+.card-content p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Grille de Statistiques */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-item h4 {
+    font-size: 2.2em;
+    color: var(--couleur-secondaire); /* Cyan Fantastique */
+    margin: 0 0 5px 0;
+}
+
+.stat-item p {
+    font-size: 0.9em;
+    margin: 0;
+    color: #777;
+}
+
+/* Bouton d'Exploration */
+.btn-universite {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: black/*var(--couleur-secondaire)*/;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(80, 227, 194, 0.6);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-universite:hover {
+    background-color: #40c9ae;
+    transform: scale(1.05);
+}
+
+/* --- SECTION CORRECTION FANTATIQUE --- */
+
+.correction-catalogue-section {
+    padding: 20px 20px;
+    background-color: #55ff6d;/*var(--couleur-fond);*/ /* Utilisez le fond général */
+    text-align: center;
+    border-radius:20px;
+    margin-top:2%;
+}
+
+.correction-catalogue-section h2 {
+    color: var(--couleur-primaire);
+    margin-bottom: 5px;
+}
+
+.correction-catalogue-section p {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Style du lien conteneur */
+.correction-card-link {
+    text-decoration: none; /* Enlève le soulignement du lien */
+    display: block;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: yellow;
+
+ /* La carte principale */
+.correction-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    background:linear-gradient(90deg, #ffffff, #f7f9fc); /* Dégradé subtil */
+    padding: 25px 35px;
+    border-radius: 15px;
+    background-color: blue;
+    /* Effet flottant */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ddd;
+    
+    /* Transition pour le dynamisme */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Effet dynamique au survol */
+/*.correction-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-color: var(--couleur-secondaire); /* Bordure en cyan fantastique */
+}
+
+.card-icon {
+    font-size: 2.5em;
+    color: var(--couleur-secondaire); /* Cyan fantastique */
+    margin-right: 20px;
+    transition: transform 0.3s;
+}
+
+/* Animation de l'icône au survol */
+.correction-card:hover .card-icon {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.card-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.card-info h3 {
+    margin: 0;
+    color: var(--couleur-texte);
+    font-size: 1.4em;
+}
+
+.card-info p {
+    margin: 5px 0 0 0;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.card-arrow {
+    font-size: 1.5em;
+    color: var(--couleur-primaire);
+    transition: transform 0.3s;
+}
+
+/* Animation de la flèche au survol */
+.correction-card:hover .card-arrow {
+    transform: translateX(10px);
+}
+
+
+
+
+/* --- SECTION CORRECTION FANTATIQUE (index.html) --- */
+
+.correction-catalogue-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.correction-card-link {
+    text-decoration: none;
+    display: block;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.correction-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #ffffff, #f7f9fc);
+    padding: 25px 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.correction-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-color: var(--couleur-secondaire);
+}
+
+.card-icon {
+    font-size: 2.5em;
+    color: var(--couleur-secondaire);
+    margin-right: 20px;
+    transition: transform 0.3s;
+}
+
+.correction-card:hover .card-icon {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.card-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.card-arrow {
+    font-size: 1.5em;
+    color: var(--couleur-primaire);
+    transition: transform 0.3s;
+}
+
+.correction-card:hover .card-arrow {
+    transform: translateX(10px);
+}
+
+/* --- STYLE SPÉCIFIQUE DES CARTES DE CORRECTION (dans la grille) --- */
+
+.ressource-card.correction-card {
+    border: 2px solid var(--couleur-secondaire);
+    box-shadow: 0 4px 15px rgba(80, 227, 194, 0.3);
+}
+
+.ressource-card.correction-card:hover {
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(80, 227, 194, 0.6);
+}
+
+/* --- BOUTON WHATSAPP DYNAMIQUE --- */
+
+.btn-whatsapp {
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366; 
+    color: white;
+    padding: 20px 0px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E; 
+    transform: scale(1.05); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-whatsapp i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+/* --- RESPONSIVITÉ POUR TOUTES LES GRILLES ET CONTENEURS (Inclut les Corrections) --- */
+
+@media (max-width: 992px) {
+    
+    /* 1. Conteneur principal de la carte de correction (Index.html) */
+    .correction-card {
+        flex-direction: column; /* Empile les éléments verticalement sur tablette */
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .card-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .card-info {
+        text-align: center; /* Centrer le texte d'information */
+        margin-bottom: 15px;
+    }
+
+    .card-arrow {
+        display: none; /* Cache la flèche sur mobile pour simplifier */
+    }
+}
+
+/* --- RESPONSIVITÉ POUR LES BOUTONS DE SÉLECTION DE NIVEAU --- */
+
+@media (max-width: 600px) {
+    
+    /* 2. Boutons de sélection de niveau (Primaire, Collège, Lycée) */
+    .niveaux-container {
+        /* Permet aux boutons de s'empiler ou de s'enrouler */
+        flex-wrap: wrap; 
+        gap: 10px;
+    }
+    
+    .btn-niveau {
+        /* Les boutons prennent une part égale de la largeur pour rester lisibles */
+        flex: 1 1 45%; 
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    /* Si seulement 3 boutons, on peut forcer un alignement sur la ligne */
+    /* .niveaux-container { justify-content: space-around; } */
+    
+    /* 3. Grille des cartes (Corrections ou Ressources) */
+    .ressources-grille {
+        /* Force une seule colonne pour un maximum de lisibilité sur smartphone */
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    
+    .ressource-card,
+    .ressource-card.correction-card {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    /* Le bouton WhatsApp doit rester lisible */
+    .btn-whatsapp {
+        width: 100%; /* S'étale sur toute la largeur de la carte */
+        padding: 12px 0;
+    }
+}
+
+
+/* --- GÉNÉRAL POUR LA PAGE À PROPOS --- */
+
+.about-header {
+    background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.6)), url('./assets/header-bg.jpg'); /* Remplacer par votre image de fond */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.about-header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.about-section {
+    padding: 50px 0;
+}
+
+.section-titl
