@@ -61,9 +61,9 @@ body {
 }
 
 /* Classes d'images dynamiques (Assurez-vous du chemin : ./assets/) */
-.bg-primaire { background-image: url('./assets/bg-primaire.jpg'); animation-duration: 30s; }
-.bg-college { background-image: url('./assets/bg-college.jpg'); animation: subtleZoom 25s infinite alternate; }
-.bg-lycee { background-image: url('./assets/bg-lycee.jpg'); animation-duration: 40s; }
+.bg-primaire { background-image: url('bg-primaire.jpg'); animation-duration: 30s; }
+.bg-college { background-image: url('.bg-college.jpg'); animation: subtleZoom 25s infinite alternate; }
+.bg-lycee { background-image: url('bg-lycee.jpg'); animation-duration: 40s; }
 
 /* --- MENU KEBAB ET OVERLAY --- */
 
