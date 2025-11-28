@@ -1,0 +1,193 @@
+:root {
+    --primary-color: #ff6600; /* Orange Money color for a warmer feel */
+    --secondary-color: #007bff; /* Bleu vif pour l'accent */
+    --bg-color: #f4f7f6;
+    --card-color: #ffffff;
+    --error-color: #e74c3c;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.donation-container {
+    background-color: var(--card-color);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.donation-container:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 2em;
+}
+
+p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* --- Formulaires et Inputs --- */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-group input, 
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+    outline: none;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+}
+
+/* --- Bouton d'envoi --- */
+#submitBtn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s, transform 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#submitBtn:hover {
+    background-color: #cc5200;
+    transform: translateY(-2px);
+}
+
+#submitBtn:active {
+    transform: translateY(0);
+}
+
+#submitBtn .icon {
+    margin-right: 10px;
+}
+
+/* --- Loader (pour l'effet d'attente) --- */
+.loader {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Section Résultat de Simulation --- */
+#simulationResult {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #c3e6cb;
+    background-color: #d4edda;
+    border-radius: 10px;
+    color: #155724;
+    text-align: left;
+}
+
+#simulationResult h2 {
+    color: #155724;
+    font-size: 1.5em;
+    margin-top: 0;
+}
+
+#simulationResult strong {
+    color: var(--primary-color);
+}
+
+#simulationResult code {
+    display: block;
+    background-color: #e2e8f0;
+    color: #1e40af;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-weight: bold;
+    overflow-wrap: break-word; /* Assure que le code s'ajuste */
+}
+
+.simulated-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-left: 10px; 
+    color: white;
+    background-color: var(--secondary-color);
+}
+
+.simulated-link:first-of-type {
+    margin-left: 0;
+}
+
+.simulated-link:hover {
+    background-color: #0056b3;
+}
+
+.reset-link {
+    background-color: #6c757d; 
+}
+
+.reset-link:hover {
+    background-color: #5a6268;
+}

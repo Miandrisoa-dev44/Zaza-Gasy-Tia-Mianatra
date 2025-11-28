@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation de Don - Mobile Money USSD</title>
+    <link rel="stylesheet" href="don.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="donation-container">
+        <h1>💖 Faites un Don Fantastique</h1>
+        <p>Simulation de transaction par code USSD (Orange Money, MVola,Airtel Money).</p>
+
+        <form id="donationForm">
+            <div class="input-group">
+                <label for="montant"><i class="fas fa-hand-holding-usd"></i> Montant du Don</label>
+                <input type="number" id="montant" name="montant" min="100" required placeholder="Minimum 100" value="500">
+                <small id="montantError" class="error-message"></small>
+            </div>
+
+            <div class="input-group">
+                <label for="reseau"><i class="fas fa-mobile-alt"></i> Réseau Mobile Money</label>
+                <select id="reseau" name="reseau" required>
+                    <option value="" disabled selected>Choisissez votre réseau</option>
+                    <option value="OrangeMoney">Orange Money</option>
+                    <option value="MVola">MVola (Madagascar)</option>
+                    <option value="Autre">Airtel Money </option>
+                </select>
+                <small id="reseauError" class="error-message"></small>
+            </div>
+
+         <!--  <div class="input-group">
+                <label for="numero"><i class="fas fa-phone"></i> Numéro de Téléphone (Optionnel pour USSD)</label>
+                <input type="tel" id="numero" name="numero" placeholder="Ex: 00 00 00 00">
+                <small id="numeroError" class="error-message"></small>
+            </div> -->
+            
+            <button type="submit" id="submitBtn">
+                <span class="icon"><i class="fas fa-paper-plane"></i></span> 
+                Envoyer le Don & Payer 
+                <span class="loader hidden"></span>
+            </button>
+        </form>
+
+        <div id="simulationResult" class="hidden">
+            <h2>✅ Redirection vers le Paiement</h2>
+            <p><strong>SIMULATION :</strong> Vous allez être redirigé vers l'application d'appel pour composer le code USSD pour <span id="resultMontant" style="color:red;"></span> via <span id="resultReseau" style="color:green;"></span>.</p>
+            <p>Code USSD généré : <code id="ussdCode"></code></p>
+            <a id="paymentLink" class="simulated-link" href="#" target="_blank">Ouvrir l'interface de Paiement (USSD)</a>
+            <button id="resetBtn" class="simulated-link reset-link">Nouveau Don</button>
+        </div>
+    </div>
+    <script src="don.js"></script>
+</body>
+</html>

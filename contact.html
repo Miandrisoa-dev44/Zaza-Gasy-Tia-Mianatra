@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-Nous - Plateforme Éducative</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="contact-header">
+        <div class="header-content container">
+            <h1>Contactez-Nous</h1>
+            <p>Nous sommes là pour répondre à vos questions sur les ressources, les corrections et les dons.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="contact-info-form">
+            
+            <div class="contact-info">
+                <h2>Où nous trouver ?</h2>
+                <p>N'hésitez pas à nous contacter directement pour un support rapide ou des demandes spécifiques.</p>
+
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Antananarivo, Madagascar (Siège Opérationnel)</p>
+                </div>
+                
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <p>support@votreprojet.mg</p>
+                </div>
+                
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>+261 3x xx xx xxx</p>
+                </div>
+
+                <div class="contact-detail whatsapp-detail">
+                    <i class="fab fa-whatsapp"></i>
+                    <p>Support Client Direct : <a href="https://wa.me/26133xxxxxxx" target="_blank">Cliquez pour chatter</a></p>
+                </div>
+                
+                <hr style="margin: 20px 0;">
+                
+                <div class="support-links">
+                    <a href="#" class="btn-support"><i class="fas fa-question-circle"></i> Consulter la FAQ</a>
+                    <a href="#" class="btn-support"><i class="fas fa-shield-alt"></i> Politique de Confidentialité</a>
+                </div>
+                
+            </div>
+
+            <div class="contact-form-container">
+                <h2>Envoyez-nous un Message</h2>
+                <form id="contactForm" class="contact-form">
+                    
+                    <div class="form-group">
+                        <label for="nom">Nom Complet</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Adresse E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sujet">Sujet</label>
+                        <select id="sujet" name="sujet">
+                            <option value="General">Question générale</option>
+                            <option value="Correction">Demande de correction</option>
+                            <option value="Don">Problème de don/paiement</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Votre Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit-form" id="submitBtn">Envoyer le Message</button>
+                    
+                    <p id="formMessage" class="form-message"></p>
+                </form>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="contact.js"></script>
+</body>
+</html>
