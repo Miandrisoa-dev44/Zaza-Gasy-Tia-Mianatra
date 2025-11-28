@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrections Fantastiques</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Styles spécifiques pour la page de correction */
+        .grille-niveaux {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+             gap: 30px;
+             margin-top: 50px;
+        }
+        .niveau-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: var(--couleur-texte);
+            display: block;
+            text-align: center;
+        }
+        .niveau-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .niveau-card h3 {
+            color: var(--couleur-primaire);
+            font-size: 1.8em;
+            margin-top: 10px;
+        }
+        .niveau-card i {
+            font-size: 3em;
+            color: var(--couleur-secondaire);
+        }
+        .retour-ressources{
+           border-radius:50%;
+           background-color:#6ff;
+        } 
+        .retour-ressources>a{
+            text-decoration:none;
+            color: blue;
+            font-size:1em;
+        }
+    </style>
+</head>
+<body>
+    
+    <main class="container" style="min-height: 80vh;">
+        <h1 style="text-align:center; margin-top:50px; color:var(--couleur-primaire);">📚 Choix du Niveau de Correction</h1>
+        <p style="text-align:center; margin-bottom: 50px;">Cliquez sur un niveau pour voir le catalogue des corrections disponibles.</p>
+        
+        <div class="grille-niveaux">
+            
+            <a href="index.html?mode=corrections&niveau=primaire" class="niveau-card">
+                <i class="fas fa-apple-alt"></i>
+                <h3>Primaire</h3>
+                <p>Corrections détaillées (CP à CM2)</p>
+            </a>
+            
+            <a href="index.html?mode=corrections&niveau=college" class="niveau-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Collège</h3>
+                <p>Corrections Brevet et 6ème à 3ème</p>
+            </a>
+            
+            <a href="index.html?mode=corrections&niveau=lycee" class="niveau-card">
+                <i class="fas fa-rocket"></i>
+                <h3>Lycée</h3>
+                <p>Corrections Bac et toutes classes</p>
+            </a>
+            
+        </div>
+        
+        <p style="text-align:center; margin-top: 40px;" class="retour-ressources"><a href="index.html">← Retour aux ressources classiques</a></p>
+    </main>
+    
+</body>
+</html>
