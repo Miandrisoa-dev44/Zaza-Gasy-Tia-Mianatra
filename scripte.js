@@ -68,7 +68,7 @@ function afficherRessources(niveau) {
         card.innerHTML = `
             <h3>${res.titre}</h3>
             <p>Type: ${res.type}</p>
-            <a href="${res.lien}" class="btn-universite">Télécharger</a>
+            <a href="${res.fichier}" class="btn-universite">Télécharger</a>
         `;
         ressourcesListe.appendChild(card);
     });
